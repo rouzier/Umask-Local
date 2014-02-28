@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Local-Umask.t
+lib/Local/Umask.pm
