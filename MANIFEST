@@ -1,6 +1,9 @@
 Changes
-Makefile.PL
 MANIFEST
+Makefile.PL
 README
-t/Local-Umask.t
-lib/Local/Umask.pm
+lib/Umask/Local.pm
+t/00-load.t
+t/manifest.t
+t/pod-coverage.t
+t/pod.t
