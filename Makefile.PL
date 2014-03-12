@@ -1,12 +1,19 @@
-use 5.010001;
+use strict;
+use warnings;
 use ExtUtils::MakeMaker;
-# See lib/ExtUtils/MakeMaker.pm for details of how to influence
-# the contents of the Makefile that is written.
+
 WriteMakefile(
-    NAME              => 'Local::Umask',
-    VERSION_FROM      => 'lib/Local/Umask.pm', # finds $VERSION
-    PREREQ_PM         => {}, # e.g., Module::Name => 1.1
-    ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
-      (ABSTRACT_FROM  => 'lib/Local/Umask.pm', # retrieve abstract from module
-       AUTHOR         => 'root <root@localdomain>') : ()),
+    NAME                => 'Umask::Local',
+    AUTHOR              => q{James Rouzier <rouzier@gmail.com>},
+    VERSION_FROM        => 'lib/Umask/Local.pm',
+    ABSTRACT_FROM       => 'lib/Umask/Local.pm',
+    ($ExtUtils::MakeMaker::VERSION >= 6.3002
+      ? ('LICENSE'=> 'perl')
+      : ()),
+    PL_FILES            => {},
+    PREREQ_PM => {
+        'Test::More' => 0,
+    },
+    dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
+    clean               => { FILES => 'Umask-Local-*' },
 );
