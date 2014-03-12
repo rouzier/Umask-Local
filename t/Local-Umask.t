@@ -6,10 +6,10 @@
 # change 'tests => 1' to 'tests => last_test_to_print';
 
 use Test::More tests => 4;
-BEGIN { use_ok('Local::Umask') };
+BEGIN { use_ok('Umask::Local') };
 my $oldmask = umask;
   {
-      my $localized_umask = Local::Umask->new(0077);
+      my $localized_umask = Umask::Local->new(0077);
       is(0077,umask,"Current mask is 0077");
       is($oldmask,$localized_umask->val,"Is old umask");
   }
