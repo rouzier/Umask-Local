@@ -1,3 +1,24 @@
+=head1 NAME
+
+Umask::Local - Class for localizing the umask
+
+=head1 SYNOPSIS
+
+  use Umask::Local;
+  {
+      my $umask_local = Umask::Local->new(0077);
+      open(FILE,">only_me");
+      close(FILE);
+  }
+  open(FILE,">default");
+  close(FILE);
+
+=head1 DESCRIPTION
+
+    Umask::Local is use to set and reset the umask for the life of the object
+
+=cut
+
 package Umask::Local;
 
 our $VERSION = '1.0';
@@ -35,12 +56,6 @@ sub new {
 
 sub val { ${$_[0]} }
 
-=head2 DESTROY
-
-    Will reset the umask to the previous umask
-
-=cut
-
 =head2 umask_localize
 
     Convenience function
@@ -49,38 +64,55 @@ sub val { ${$_[0]} }
 
 sub umask_localize { Umask::Local->new($_[0]) }
 
+=head2 DESTROY
+
+    Will reset the umask to the previous umask
+
+=cut
+
 sub DESTROY { umask ${$_[0]}; }
 
 
 1;
 __END__
 
-=head1 NAME
-
-Umask::Local - Class for localizing the umask
-
-=head1 SYNOPSIS
-
-  use Umask::Local;
-  {
-      my $umask_local = Umask::Local->new(0077);
-      open(FILE,">only_me");
-      close(FILE);
-  }
-  open(FILE,">default");
-  close(FILE);
-
-=head1 DESCRIPTION
-
-    Umask::Local is use to set and reset the umask for the life of the object
-
 =head1 SEE ALSO
 
     L<umask>
 
+=head1 INSTALLATION
+
+To install this module, run the following commands:
+
+	perl Makefile.PL
+	make
+	make test
+	make install
+
+=head1 SUPPORT AND DOCUMENTATION
+
+After installing, you can find documentation for this module with the
+perldoc command.
+
+    perldoc Umask::Local
+
+You can also look for information at:
+
+    RT, CPAN's request tracker
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Umask-Local
+
+    AnnoCPAN, Annotated CPAN documentation
+        http://annocpan.org/dist/Umask-Local
+
+    CPAN Ratings
+        http://cpanratings.perl.org/d/Umask-Local
+
+    Search CPAN
+        http://search.cpan.org/dist/Umask-Local/
+
 =head1 AUTHOR
 
-root, E<lt>rouzier@gmail.comE<gt>
+James Jude Rouzier, E<lt>rouzier@gmail.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
