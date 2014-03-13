@@ -16,4 +16,10 @@ WriteMakefile(
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'Umask-Local-*' },
+    $ExtUtils::MakeMaker::VERSION >= 6.50 ? (
+        META_MERGE => {
+            resources => {
+                repository  => 'http://github.com/rouzier/Umask-Local',
+            },
+    }) : (),
 );
